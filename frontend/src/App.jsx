@@ -3,15 +3,17 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/auth/LoginPage";
 import SignUpPage from "./pages/auth/SignUpPage";
 import NotificationsPage from "./pages/NotificationPage";
-// import NetworkPage from "./pages/NetworkPage";
+import MyNetworkPage from "./pages/MyNetworkPage";
 import PostPage from "./pages/PostPage";
 import ProfilePage from "./pages/ProfilePage";
 import MessagesPage from "./pages/chatapp/MessagePage";
+import Notification from "./components/Notification";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useCheckAuth } from "./hooks/useAuth";
 import { useAuthSocket } from "./hooks/useAuthSocket";
 import { Loader } from "lucide-react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { data: authUser, isLoading } = useCheckAuth();
@@ -47,10 +49,10 @@ function App() {
             authUser ? <NotificationsPage /> : <Navigate to={"/login"} />
           }
         />
-        {/* <Route
+        <Route
           path="/network"
-          element={authUser ? <NetworkPage /> : <Navigate to={"/login"} />}
-        /> */}
+          element={authUser ? <MyNetworkPage /> : <Navigate to={"/login"} />}
+        />
         <Route
           path="/post/:postId"
           element={authUser ? <PostPage /> : <Navigate to={"/login"} />}
@@ -64,7 +66,9 @@ function App() {
           element={authUser ? <MessagesPage /> : <Navigate to={"/login"} />}
         />
       </Routes>
+      <Notification />
       <Toaster />
+      <ToastContainer position="bottom-right" />
     </Layout>
   );
 }

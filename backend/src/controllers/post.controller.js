@@ -107,7 +107,6 @@ export const createComment = async (req, res) => {
       },
       { new: true }
     ).populate("author", "name email username headline profilePicture");
-
     // create a notification if the comment owner is not the post owner
     if (post.author._id.toString() !== req.user._id.toString()) {
       const newNotification = new Notification({
@@ -118,11 +117,17 @@ export const createComment = async (req, res) => {
       });
 
       await newNotification.save();
-    }
 
-    const receiverSocketId = getReceiverSocketId(post.author._id);
-    if (receiverSocketId) {
-      io.to(receiverSocketId).emit("newComment");
+      const receiverSocketId = getReceiverSocketId(post.author._id);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit("newComment", {
+          postId,
+          comment: {
+            user: req.user.name,
+            content,
+          },
+        });
+      }
     }
 
     res.status(200).json(post);

@@ -112,7 +112,7 @@ const LoginPage = () => {
                         <div className="flex items-center gap-2">
                           <span>{account.username}</span>
                           <button
-                            onClick={() => copyToClipboard(account.email)}
+                            onClick={() => copyToClipboard(account.username)}
                             className="text-blue-600 hover:text-blue-800"
                             title="Sao chép Email"
                           >

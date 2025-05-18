@@ -5,7 +5,7 @@ import { UserPlus } from "lucide-react";
 import FriendRequest from "../components/FriendRequest";
 import UserCard from "../components/UserCard";
 
-const NetworkPage = () => {
+const MyNetworkPage = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData(["authUser"]); // Lấy dữ liệu từ cache
 
@@ -73,4 +73,4 @@ const NetworkPage = () => {
     </div>
   );
 };
-export default NetworkPage;
+export default MyNetworkPage;

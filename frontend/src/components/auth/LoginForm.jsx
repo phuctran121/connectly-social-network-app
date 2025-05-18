@@ -3,16 +3,18 @@ import { useState } from "react";
 import { axiosInstance } from "../../lib/axios";
 import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
+import { toast as toastify } from "react-toastify";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const queryClient = useQueryClient();
 
-  const { mutate: loginMutation, isLoading } = useMutation({
+  const { mutate: loginMutation, isPending } = useMutation({
     mutationFn: (userData) => axiosInstance.post("/auth/login", userData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      toastify.success("Login successfully!!!");
     },
     onError: (err) => {
       toast.error(err.response.data.message || "Something went wrong");
@@ -43,8 +45,12 @@ const LoginForm = () => {
         required
       />
 
-      <button type="submit" className="btn btn-primary w-full">
-        {isLoading ? <Loader className="size-5 animate-spin" /> : "Login"}
+      <button
+        type="submit"
+        disabled={isPending}
+        className="btn btn-primary w-full"
+      >
+        {isPending ? <Loader className="size-5 animate-spin" /> : "Login"}
       </button>
     </form>
   );

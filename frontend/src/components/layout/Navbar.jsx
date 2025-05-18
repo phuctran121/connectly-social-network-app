@@ -10,6 +10,8 @@ import {
   MessageSquareMore,
 } from "lucide-react";
 import { useGetUnreadMessagesCount } from "../../hooks/useChat";
+import { toast as toastify } from "react-toastify";
+import { Loader } from "lucide-react";
 
 const Navbar = () => {
   const queryClient = useQueryClient();
@@ -27,10 +29,11 @@ const Navbar = () => {
     enabled: !!authUser,
   });
 
-  const { mutate: logout } = useMutation({
+  const { mutate: logout, isPending: isLoadingLogout } = useMutation({
     mutationFn: () => axiosInstance.post("/auth/logout"),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      toastify.info("Logout successfully!!!");
     },
   });
 
@@ -71,46 +74,52 @@ const Navbar = () => {
                   to="/network"
                   className={({ isActive }) => navLinkClass({ isActive })}
                 >
-                  <Users size={20} />
-                  <span className="text-xs hidden md:block">My Network</span>
-                  {unreadConnectionRequestsCount > 0 && (
-                    <span
-                      className="absolute -top-1 -right-1 md:right-4 bg-blue-500 text-white text-xs 
+                  <div className="relative flex flex-col items-center">
+                    <Users size={20} />
+                    {unreadConnectionRequestsCount > 0 && (
+                      <span
+                        className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs 
 										rounded-full size-3 md:size-4 flex items-center justify-center"
-                    >
-                      {unreadConnectionRequestsCount}
-                    </span>
-                  )}
+                      >
+                        {unreadConnectionRequestsCount}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs hidden md:block">My Network</span>
                 </NavLink>
                 <NavLink
                   to="/messages"
                   className={({ isActive }) => navLinkClass({ isActive })}
                 >
-                  <MessageSquareMore size={20} />
-                  <span className="text-xs hidden md:block">Messages</span>
-                  {unreadMessagesCount?.unreadCount > 0 && (
-                    <span
-                      className="absolute -top-1 -right-1 md:right-2 bg-blue-500 text-white text-xs 
+                  <div className="relative flex flex-col items-center">
+                    <MessageSquareMore size={20} />
+                    {unreadMessagesCount?.unreadCount > 0 && (
+                      <span
+                        className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs 
 										rounded-full size-3 md:size-4 flex items-center justify-center"
-                    >
-                      {unreadMessagesCount?.unreadCount}
-                    </span>
-                  )}
+                      >
+                        {unreadMessagesCount?.unreadCount}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs hidden md:block">Messages</span>
                 </NavLink>
                 <NavLink
                   to="/notifications"
                   className={({ isActive }) => navLinkClass({ isActive })}
                 >
-                  <Bell size={20} />
+                  <div className="relative flex flex-col items-center">
+                    <Bell size={20} />
+                    {unreadNotificationCount > 0 && (
+                      <span
+                        className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs 
+                   rounded-full size-3 md:size-4 flex items-center justify-center"
+                      >
+                        {unreadNotificationCount}
+                      </span>
+                    )}
+                  </div>
                   <span className="text-xs hidden md:block">Notifications</span>
-                  {unreadNotificationCount > 0 && (
-                    <span
-                      className="absolute -top-1 -right-1 md:right-4 bg-blue-500 text-white text-xs 
-										rounded-full size-3 md:size-4 flex items-center justify-center"
-                    >
-                      {unreadNotificationCount}
-                    </span>
-                  )}
                 </NavLink>
                 <NavLink
                   to={`/profile/${authUser.username}`}
@@ -123,8 +132,14 @@ const Navbar = () => {
                   className="flex items-center space-x-1 text-sm text-gray-600 hover:text-gray-800"
                   onClick={() => logout()}
                 >
-                  <LogOut size={20} />
-                  <span className="hidden md:inline">Logout</span>
+                  {isLoadingLogout ? (
+                    <Loader className="size-5 animate-spin" />
+                  ) : (
+                    <>
+                      <LogOut size={20} />
+                      <span className="hidden md:inline">Logout</span>
+                    </>
+                  )}
                 </button>
               </>
             ) : (
