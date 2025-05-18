@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/auth/LoginPage";
 import SignUpPage from "./pages/auth/SignUpPage";
 import NotificationsPage from "./pages/NotificationPage";
-import NetworkPage from "./pages/NetworkPage";
+// import NetworkPage from "./pages/NetworkPage";
 import PostPage from "./pages/PostPage";
 import ProfilePage from "./pages/ProfilePage";
 import MessagesPage from "./pages/chatapp/MessagePage";
@@ -47,10 +47,10 @@ function App() {
             authUser ? <NotificationsPage /> : <Navigate to={"/login"} />
           }
         />
-        <Route
+        {/* <Route
           path="/network"
           element={authUser ? <NetworkPage /> : <Navigate to={"/login"} />}
-        />
+        /> */}
         <Route
           path="/post/:postId"
           element={authUser ? <PostPage /> : <Navigate to={"/login"} />}
