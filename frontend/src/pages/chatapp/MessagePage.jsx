@@ -7,7 +7,7 @@ import { getSocket } from "../../lib/socket";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { resetSelectedUser } from "../../store/slices/chatSlice"; // Import action để reset selectedUser
+import { resetSelectedUser } from "../../store/slices/chatSlice";
 
 const MessagePage = () => {
   const queryClient = useQueryClient();
@@ -29,27 +29,22 @@ const MessagePage = () => {
     const socket = getSocket();
     if (!socket) return;
     const handleNewMessage = (newMessage) => {
-      // Lấy authUser từ cache để xác định người dùng hiện tại
       const authUser = queryClient.getQueryData(["authUser"]);
       if (!authUser) return;
-      notificationSound.volume = 0.2; // Đặt âm lượng cho âm thanh thông báo
+      notificationSound.volume = 0.2;
       notificationSound.play().catch((error) => {
         console.error("Error playing sound:", error);
       });
-      // Xác định người dùng liên quan đến tin nhắn
       const relatedUserId =
         newMessage.senderId === authUser._id
           ? newMessage.receiverId
           : newMessage.senderId;
 
-      // Cập nhật danh sách người dùng trong cache
       queryClient.setQueryData(["users"], (oldUsers) => {
         if (!oldUsers) return oldUsers;
 
-        // Tạo bản sao của danh sách người dùng
         const updatedUsers = [...oldUsers];
 
-        // Tìm chỉ số của người dùng liên quan
         const userIndex = updatedUsers.findIndex(
           (user) => user._id === relatedUserId
         );
