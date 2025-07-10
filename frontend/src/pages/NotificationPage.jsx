@@ -120,7 +120,7 @@ const NotificationsPage = () => {
       </div>
       <div className="col-span-1 lg:col-span-3">
         <div className="bg-white rounded-lg shadow p-6">
-          <h1 className="text-2xl font-bold mb-6">Notifications</h1>
+          <h1 className="text-2xl font-bold mb-6 text-black">Notifications</h1>
 
           {isLoading ? (
             <p>Loading notifications...</p>
@@ -134,7 +134,7 @@ const NotificationsPage = () => {
                   }`}
                 >
                   <div className="flex items-start justify-between">
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-4 text-black">
                       <Link
                         to={`/profile/${notification.relatedUser.username}`}
                       >
@@ -195,7 +195,7 @@ const NotificationsPage = () => {
               ))}
             </ul>
           ) : (
-            <p>No notification at the moment.</p>
+            <p className="text-black">No notification at the moment.</p>
           )}
         </div>
       </div>

@@ -32,7 +32,7 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
 
   return (
     <div className="bg-white shadow rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Skills</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black">Skills</h2>
       <div className="flex flex-wrap">
         {skills.map((skill, index) => (
           <span
@@ -59,7 +59,7 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
             placeholder="New Skill"
             value={newSkill}
             onChange={(e) => setNewSkill(e.target.value)}
-            className="flex-grow p-2 border rounded-l"
+            className="flex-grow p-2 border rounded-l bg-white text-black"
           />
           <button
             onClick={handleAddSkill}

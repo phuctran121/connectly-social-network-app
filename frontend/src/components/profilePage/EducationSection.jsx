@@ -45,13 +45,13 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
 
   return (
     <div className="bg-white shadow rounded-lg p-6 mb-6">
-      <h2 className="text-xl font-semibold mb-4">Education</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black">Education</h2>
       {educations.map((edu) => (
         <div key={edu._id} className="mb-4 flex justify-between items-start">
           <div className="flex items-start">
-            <School size={20} className="mr-2 mt-1" />
+            <School size={20} className="mr-2 mt-1 text-black" />
             <div>
-              <h3 className="font-semibold">{edu.fieldOfStudy}</h3>
+              <h3 className="font-semibold text-black">{edu.fieldOfStudy}</h3>
               <p className="text-gray-600">{edu.school}</p>
               <p className="text-gray-500 text-sm">
                 {edu.startYear} - {edu.endYear || "Present"}
@@ -77,7 +77,7 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
             onChange={(e) =>
               setNewEducation({ ...newEducation, school: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded mb-2 bg-white text-black"
           />
           <input
             type="text"
@@ -86,7 +86,7 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
             onChange={(e) =>
               setNewEducation({ ...newEducation, fieldOfStudy: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded mb-2 bg-white text-black"
           />
           <input
             type="number"
@@ -95,7 +95,7 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
             onChange={(e) =>
               setNewEducation({ ...newEducation, startYear: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded mb-2 bg-white text-black"
           />
           <input
             type="number"
@@ -104,7 +104,7 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
             onChange={(e) =>
               setNewEducation({ ...newEducation, endYear: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded mb-2 bg-white text-black"
           />
           <button
             onClick={handleAddEducation}

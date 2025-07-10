@@ -110,7 +110,7 @@ const Post = ({ post }) => {
 
             <div>
               <Link to={`/profile/${post?.author?.username}`}>
-                <h3 className="font-semibold">{post.author.name}</h3>
+                <h3 className="font-semibold text-black">{post.author.name}</h3>
               </Link>
               <p className="text-xs text-info">{post.author.headline}</p>
               <p className="text-xs text-info">
@@ -133,7 +133,7 @@ const Post = ({ post }) => {
             </button>
           )}
         </div>
-        <p className="mb-4">{post.content}</p>
+        <p className="mb-4 text-black">{post.content}</p>
         {post.image && (
           <img
             src={post.image}
@@ -169,7 +169,7 @@ const Post = ({ post }) => {
             {comments.map((comment) => (
               <div
                 key={comment._id}
-                className="mb-2 bg-base-100 p-2 rounded flex items-start"
+                className="mb-2 p-2 rounded flex items-start bg-white"
               >
                 <img
                   src={comment.user.profilePicture || "/avatar.png"}
@@ -178,14 +178,14 @@ const Post = ({ post }) => {
                 />
                 <div className="flex-grow">
                   <div className="flex items-center mb-1">
-                    <span className="font-semibold mr-2">
+                    <span className="font-semibold mr-2 text-black">
                       {comment.user.name}
                     </span>
                     <span className="text-xs text-info">
                       {formatDistanceToNow(new Date(comment.createdAt))}
                     </span>
                   </div>
-                  <p>{comment.content}</p>
+                  <p className="text-black">{comment.content}</p>
                 </div>
               </div>
             ))}
@@ -197,7 +197,7 @@ const Post = ({ post }) => {
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment..."
-              className="flex-grow p-2 rounded-l-full bg-base-100 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="flex-grow p-2 rounded-l-full focus:outline-none focus:ring-2 focus:ring-primary bg-white text-black "
             />
 
             <button

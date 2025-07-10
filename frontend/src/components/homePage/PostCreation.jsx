@@ -86,7 +86,7 @@ const PostCreation = ({ user }) => {
         />
         <textarea
           placeholder="What's on your mind?"
-          className="w-full p-3 rounded-lg bg-gray-50 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none resize-none transition-colors duration-200 min-h-[100px]"
+          className="w-full p-3 rounded-lg text-black bg-gray-50 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none resize-none transition-colors duration-200 min-h-[100px]"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />

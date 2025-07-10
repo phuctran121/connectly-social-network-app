@@ -60,13 +60,13 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 
   return (
     <div className="bg-white shadow rounded-lg p-6 mb-6">
-      <h2 className="text-xl font-semibold mb-4">Experience</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black">Experience</h2>
       {experiences.map((exp) => (
         <div key={exp._id} className="mb-4 flex justify-between items-start">
           <div className="flex items-start">
-            <Briefcase size={20} className="mr-2 mt-1" />
+            <Briefcase size={20} className="mr-2 mt-1 text-black" />
             <div>
-              <h3 className="font-semibold">{exp.title}</h3>
+              <h3 className="font-semibold text-black">{exp.title}</h3>
               <p className="text-gray-600">{exp.company}</p>
               <p className="text-gray-500 text-sm">
                 {formatDate(exp.startDate)} -{" "}
@@ -95,7 +95,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
             onChange={(e) =>
               setNewExperience({ ...newExperience, title: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded mb-2 bg-white text-black"
           />
           <input
             type="text"
@@ -104,7 +104,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
             onChange={(e) =>
               setNewExperience({ ...newExperience, company: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded mb-2 bg-white text-black"
           />
           <input
             type="date"
@@ -113,15 +113,15 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
             onChange={(e) =>
               setNewExperience({ ...newExperience, startDate: e.target.value })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded mb-2 bg-white text-black"
           />
-          <div className="flex items-center mb-2">
+          <div className="flex items-center mb-2 text-black">
             <input
               type="checkbox"
               id="currentlyWorking"
               checked={newExperience.currentlyWorking}
               onChange={handleCurrentlyWorkingChange}
-              className="mr-2"
+              className="mr-2 bg-white"
             />
             <label htmlFor="currentlyWorking">I currently work here</label>
           </div>
@@ -133,7 +133,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
               onChange={(e) =>
                 setNewExperience({ ...newExperience, endDate: e.target.value })
               }
-              className="w-full p-2 border rounded mb-2"
+              className="w-full p-2 border rounded mb-2 bg-white text-black"
             />
           )}
           <textarea
@@ -145,7 +145,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
                 description: e.target.value,
               })
             }
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded mb-2 bg-white text-black"
           />
           <button
             onClick={handleAddExperience}

@@ -18,7 +18,7 @@ export default function Sidebar({ user }) {
             alt={user.name}
             className="w-20 h-20 rounded-full mx-auto mt-[-40px]"
           />
-          <h2 className="text-xl font-semibold mt-2">{user.name}</h2>
+          <h2 className="text-xl font-semibold mt-2 text-black">{user.name}</h2>
         </Link>
         <p className="text-info">{user.headline}</p>
         <p className="text-info text-xs">
@@ -27,13 +27,13 @@ export default function Sidebar({ user }) {
       </div>
 
       {/* Shortcuts Button */}
-      <div className="border-t border-base-100 p-4">
+      <div className="border-t border-gray-400/20 p-4">
         <nav>
           <ul className="space-y-2 flex flex-col">
             <li>
               <Link
                 to="/"
-                className="flex items-center py-2 px-4 rounded-md hover:bg-primary hover:text-white transition-colors"
+                className="flex items-center py-2 px-4 rounded-md hover:bg-primary hover:text-white transition-colors text-black"
               >
                 <Home className="mr-2" size={20} /> Home
               </Link>
@@ -41,7 +41,7 @@ export default function Sidebar({ user }) {
             <li>
               <Link
                 to="/network"
-                className="flex items-center py-2 px-4 rounded-md hover:bg-primary hover:text-white transition-colors"
+                className="flex items-center py-2 px-4 rounded-md hover:bg-primary hover:text-white transition-colors text-black"
               >
                 <UserPlus className="mr-2" size={20} /> My Network
               </Link>
@@ -49,7 +49,7 @@ export default function Sidebar({ user }) {
             <li>
               <Link
                 to="/notifications"
-                className="flex items-center py-2 px-4 rounded-md hover:bg-primary hover:text-white transition-colors"
+                className="flex items-center py-2 px-4 rounded-md hover:bg-primary hover:text-white transition-colors text-black"
               >
                 <Bell className="mr-2" size={20} /> Notifications
               </Link>
@@ -59,10 +59,10 @@ export default function Sidebar({ user }) {
       </div>
 
       {/* Visit Profile */}
-      <div className="border-t border-base-100 p-4">
+      <div className="border-t border-gray-400/20 p-4">
         <Link
           to={`/profile/${user.username}`}
-          className="text-sm font-semibold"
+          className="text-sm font-semibold text-black hover:text-primary"
         >
           Visit your profile
         </Link>
